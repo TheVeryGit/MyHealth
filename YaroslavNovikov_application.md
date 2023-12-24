@@ -2,7 +2,7 @@
 
 ### Группа: 10 - И - 1
 ### Электронная почта: novikovyr1511@gmail.com
-### VK: www.vk.com/alekscooper
+### VK: https://vk.com/id717330648
 
 
 **[ НАЗВАНИЕ ПРОЕКТА ]**
