@@ -60,6 +60,7 @@ public class MaleActivity extends AppCompatActivity {
 
             result.setText("Ваша суточная норма потребления в ккалориях:" +
                     "\n" + String.valueOf(calory));
+
         }
     };
 

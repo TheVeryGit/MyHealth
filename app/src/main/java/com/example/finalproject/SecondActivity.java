@@ -39,6 +39,7 @@ public class SecondActivity extends AppCompatActivity {
             Intent intent1 = new Intent(getApplicationContext(),FemaleActivity.class);
             startActivity(intent1);
 
+
         }
     };
 

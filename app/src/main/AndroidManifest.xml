@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo"
-        android:label="MyYoga"
+        android:label="MyHealth"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="33">

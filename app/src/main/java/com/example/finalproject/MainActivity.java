@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private ImageButton logo;
 
     @Override
@@ -33,4 +32,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
 }
