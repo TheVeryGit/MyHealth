@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/colorBackground">
+
+    <!-- Приветственный текст -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Добро пожаловать в MyHealth!"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        >
+
+
+        <Button
+            android:id="@+id/btn_calorie_calculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background"
+            android:text="Расчёт нормы калорий"
+             />
+
+        <Button
+            android:id="@+id/btn_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Упражнения"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_calorie_burning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Расчёт сжигания калорий"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_meal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Запись рациона питания"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_reminders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавление напоминаний"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_sleep_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Расчёт продолжительности сна"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_food_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background"
+            android:text="Перечень продуктов питания"
+             />
+
+    </LinearLayout>/>
+
+</LinearLayout>

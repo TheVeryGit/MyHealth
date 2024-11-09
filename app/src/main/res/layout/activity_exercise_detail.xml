@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/textExerciseNameDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Exercise Name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/imageExerciseDetail"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_background" />
+
+    <TextView
+        android:id="@+id/textExerciseDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exercise Description"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/rounded_background"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Линия-разделитель -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Техника выполнения:"
+        android:textStyle="bold"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+    <TextView
+        android:id="@+id/textExerciseInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_background"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_primary_background"
+        android:text="Закрыть"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

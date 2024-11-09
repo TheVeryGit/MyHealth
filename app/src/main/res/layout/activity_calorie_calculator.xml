@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Мужской"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Женский" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/inputAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Возраст"
+        android:inputType="number"
+        android:background="@drawable/rounded_background"
+        android:padding = "12dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/errorAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Некорректный возраст"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/inputHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Рост (см)"
+        android:inputType="number"
+        android:background="@drawable/rounded_background"
+        android:padding = "12dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/errorHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Некорректный рост"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/inputWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Вес (кг)"
+        android:inputType="number"
+        android:background="@drawable/rounded_background"
+        android:padding = "12dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/errorWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Некорректный вес"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Рассчитать" />
+</LinearLayout>

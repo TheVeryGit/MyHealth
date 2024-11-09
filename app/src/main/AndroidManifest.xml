@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo_square"
+        android:label="MyHealth"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyHealthApp"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".AddReminderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReminderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReminderListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddMealActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MealDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MealListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExercisesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalorieBurningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalorieCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SleepCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".ReminderBroadcastReceiver"
+            android:exported="false"/>
+    </application>
+
+</manifest>

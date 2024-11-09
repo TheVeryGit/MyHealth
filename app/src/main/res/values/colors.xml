@@ -1,0 +1,5 @@
+<resources>
+    <!-- Фон -->
+    <color name="colorBackground">#FFFFFF</color>       <!-- Светлый серый фон для нейтрального фона -->
+
+</resources>
