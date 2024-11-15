@@ -1,6 +1,5 @@
 package com.example.myhealthapp;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,9 +21,9 @@ public class MealDetailActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        mealId = getIntent().getLongExtra("meal_id", -1);
+        mealId = getIntent().getLongExtra("meal_id", -1); // Получение ID приема пищи
         if (mealId == -1) {
-            finish();
+            finish(); // Закрытие активности, если ID не найден
             return;
         }
 
@@ -41,10 +40,10 @@ public class MealDetailActivity extends AppCompatActivity {
                 null, null, null);
 
         if (cursor != null && cursor.moveToFirst()) {
-            dateTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DATE)));
-            breakfastTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_BREAKFAST)));
-            lunchTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LUNCH)));
-            dinnerTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DINNER)));
+            dateTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DATE))); // Отображение даты
+            breakfastTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_BREAKFAST))); // Отображение завтрака
+            lunchTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LUNCH))); // Отображение обеда
+            dinnerTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DINNER))); // Отображение ужина
             cursor.close();
         }
 
@@ -53,8 +52,8 @@ public class MealDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SQLiteDatabase writableDb = dbHelper.getWritableDatabase();
-                writableDb.delete(DatabaseHelper.TABLE_MEALS, DatabaseHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(mealId)});
-                finish();
+                writableDb.delete(DatabaseHelper.TABLE_MEALS, DatabaseHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(mealId)}); // Удаление приема пищи по ID
+                finish(); // Закрытие активности после удаления
             }
         });
 
@@ -62,7 +61,7 @@ public class MealDetailActivity extends AppCompatActivity {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finish(); // Закрытие активности
             }
         });
     }

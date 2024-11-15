@@ -27,7 +27,7 @@ public class AddMealActivity extends AppCompatActivity {
         Locale.setDefault(locale);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_meal); // Устанавливаем layout активности
+        setContentView(R.layout.activity_add_meal); //Устанавливаем лэйаут активности
 
         dbHelper = new DatabaseHelper(this); // Инициализация помощника для работы с базой данных
 
@@ -54,7 +54,7 @@ public class AddMealActivity extends AppCompatActivity {
         String lunch = lunchEditText.getText().toString();
         String dinner = dinnerEditText.getText().toString();
 
-        // Проверка, что все поля заполнены
+        // Проверка,что все поля заполнены
         if (TextUtils.isEmpty(date) || TextUtils.isEmpty(breakfast) || TextUtils.isEmpty(lunch) || TextUtils.isEmpty(dinner)) {
             Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
             return;

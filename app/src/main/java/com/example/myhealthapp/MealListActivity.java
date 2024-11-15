@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-
 public class MealListActivity extends BaseActivity {
 
     private ListView listView;
@@ -21,48 +20,47 @@ public class MealListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_list);
 
-        listView = findViewById(R.id.listView);
-        dbHelper = new DatabaseHelper(this);
+        listView = findViewById(R.id.listView); // Инициализация списка
+        dbHelper = new DatabaseHelper(this); // Инициализация базы данных
 
-        initToolbar();
-        setToolbarTitle("Рацион питания");
-
+        initToolbar(); // Инициализация тулбара
+        setToolbarTitle("Рацион питания"); // Установка заголовка тулбара
 
         Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MealListActivity.this, AddMealActivity.class);
-                startActivity(intent);
+                startActivity(intent); // Переход к экрану добавления нового приема пищи
             }
         });
 
-        loadMeals();
+        loadMeals(); // Загрузка списка приемов пищи
     }
 
     private void loadMeals() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase(); // Открытие базы данных для чтения
         Cursor cursor = db.query(DatabaseHelper.TABLE_MEALS,
-                null, null, null, null, null, DatabaseHelper.COLUMN_DATE + " DESC");
+                null, null, null, null, null, DatabaseHelper.COLUMN_DATE + " DESC"); // Запрос для получения данных о приемах пищи
 
         adapter = new SimpleCursorAdapter(this,
                 R.layout.meal_list_item,
                 cursor,
                 new String[]{DatabaseHelper.COLUMN_DATE},
                 new int[]{R.id.dateTextView},
-                0);
+                0); // Настройка адаптера для отображения данных
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter); // Установка адаптера для списка
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(MealListActivity.this, MealDetailActivity.class);
-            intent.putExtra("meal_id", id);
-            startActivity(intent);
+            intent.putExtra("meal_id", id); // Передача ID выбранного приема пищи
+            startActivity(intent); // Переход к экрану с подробной информацией о приеме пищи
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadMeals();
+        loadMeals(); // Перезагрузка списка при возобновлении активности
     }
 }

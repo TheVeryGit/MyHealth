@@ -1,25 +1,20 @@
 package com.example.myhealthapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ProgressBar;
-
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class FoodListActivity extends BaseActivity {
 
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
-    private FoodAdapter foodAdapter;
-    private List<Food> foodList;
+    private RecyclerView recyclerView; // Список продуктов
+    private ProgressBar progressBar; // Индикатор загрузки
+    private FoodAdapter foodAdapter; // Адаптер для списка продуктов
+    private List<Food> foodList; // Список продуктов
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +28,7 @@ public class FoodListActivity extends BaseActivity {
 
         foodList = new ArrayList<>();
 
-// Обновленный список продуктов с нормальными названиями изображений
+        //Список продуктов
         foodList.add(new Food("Авокадо", R.drawable.avocado, 160, 2, 15, 9));
         foodList.add(new Food("Ананас", R.drawable.pineapple, 50, 0, 0, 13));
         foodList.add(new Food("Апельсин", R.drawable.orange, 47, 1, 0, 12));
@@ -64,36 +59,40 @@ public class FoodListActivity extends BaseActivity {
         foodList.add(new Food("Яблоко", R.drawable.apple, 52, 0, 0, 14));
         foodList.add(new Food("Яйца", R.drawable.eggs, 155, 13, 11, 1));
 
-
+        // Установка адаптера и назначение обработчика кликов
         foodAdapter = new FoodAdapter(foodList, this::openFoodDetail);
         recyclerView.setAdapter(foodAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Слушатель прокрутки списка
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                updateProgressBar();
+                updateProgressBar(); // Обновляем индикатор прогресса
             }
         });
     }
 
+    // Метод для обновления индикатора прогресса в зависимости от прокрутки списка
+
     private void updateProgressBar() {
         LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-        int totalItemCount = layoutManager.getItemCount();
+        int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition(); // Позиция первого видимого элемента
+        int totalItemCount = layoutManager.getItemCount(); // Общее количество элементов
 
+        // Обновляем прогрессбар, если есть элементы
         if (totalItemCount == 0) {
-            progressBar.setProgress(0);
+            progressBar.setProgress(0); // Если элементов нет
         } else {
             int progress = (firstVisibleItemPosition * 100) / totalItemCount;
-            progressBar.setProgress(progress);
+            progressBar.setProgress(progress); // Устанавливаем процент прогресса
         }
     }
 
     private void openFoodDetail(Food food) {
-        Intent intent = new Intent(this, FoodDetailActivity.class);
-        intent.putExtra("food", food);
-        startActivity(intent);
+        Intent intent = new Intent(this, FoodDetailActivity.class); // Создание Intent для перехода на FoodDetailActivity
+        intent.putExtra("food", food); // Передача данных о продукте
+        startActivity(intent); // Запуск новой активности
     }
 }
-

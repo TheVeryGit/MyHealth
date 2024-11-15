@@ -20,6 +20,7 @@ public class CalorieBurningActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie_burning);
 
+        // Инициализируем элементы интерфейса
         inputWeight = findViewById(R.id.inputWeight);
         inputDistance = findViewById(R.id.inputDistance);
         inputTimeSwimming = findViewById(R.id.inputTimeSwimming);
@@ -34,7 +35,7 @@ public class CalorieBurningActivity extends BaseActivity {
 
 
         initToolbar();
-        setToolbarTitle("Рассчет сжигания калорий");
+        setToolbarTitle("Расчет сжигания калорий");
 
         // Получаем ссылки на поля для ввода в зависимости от выбранной активности
         final View walkingFields = findViewById(R.id.walkingFields);
@@ -42,22 +43,25 @@ public class CalorieBurningActivity extends BaseActivity {
 
         radioGroupActivityType.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radioWalking) {
-                walkingFields.setVisibility(View.VISIBLE);
+                walkingFields.setVisibility(View.VISIBLE); //Если выбрана ходьба как активность, то прячем поля ввода для плавания
                 swimmingFields.setVisibility(View.GONE);
             } else {
-                walkingFields.setVisibility(View.GONE);
+                walkingFields.setVisibility(View.GONE); //Если выбрано плавание как активность, то прячем поля ввода ходьбы
                 swimmingFields.setVisibility(View.VISIBLE);
             }
         });
 
+        // Инициализируем кнопку рассчета
         Button btnCalculateBurn = findViewById(R.id.btnCalculateBurn);
         btnCalculateBurn.setOnClickListener(v -> calculateCaloriesBurned());
     }
 
+    //Метод нахождения соженных каллорий
     private void calculateCaloriesBurned() {
         String weightStr = inputWeight.getText().toString().trim();
         boolean isValid = true;
 
+        //Проверка на пустое поле ввода
         if (weightStr.isEmpty()) {
             errorWeight.setVisibility(View.VISIBLE);
             isValid = false;
@@ -65,46 +69,51 @@ public class CalorieBurningActivity extends BaseActivity {
             errorWeight.setVisibility(View.GONE);
         }
 
+        //Проверка на корректность введенного веса
         int weight;
         try {
             weight = Integer.parseInt(weightStr);
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();//Вывод предупреждения
             return;
         }
 
         int checkedActivityId = radioGroupActivityType.getCheckedRadioButtonId();
         double caloriesBurned = 0;
-
+        // Если пользователь выбрал ходьбу
         if (checkedActivityId == R.id.radioWalking) {
             String distanceStr = inputDistance.getText().toString().trim();
+            //Проверка на пустое поле ввода
             if (distanceStr.isEmpty()) {
                 errorDistance.setVisibility(View.VISIBLE);
                 isValid = false;
             } else {
                 errorDistance.setVisibility(View.GONE);
             }
-
+            //Вывод предупреждения
             if (!isValid) {
                 Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             double distance;
+            //Проверка на корректность введенной дистанции
             try {
+
                 distance = Double.parseDouble(distanceStr);
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();//Вывод предупреждения
                 return;
             }
 
+            //Различные множители в зависимости от выбранной скорости ходьбы
             int checkedWalkingTypeId = radioGroupWalkingType.getCheckedRadioButtonId();
             if (checkedWalkingTypeId == R.id.radioSlow) {
-                caloriesBurned = weight * distance * 0.5; // Пример для медленной ходьбы
+                caloriesBurned = weight * distance * 0.5; // Расчет для медленной ходьбы
             } else if (checkedWalkingTypeId == R.id.radioFast) {
-                caloriesBurned = weight * distance * 0.9; // Пример для быстрой ходьбы
+                caloriesBurned = weight * distance * 0.9; // Расчет для быстрой ходьбы
             } else {
-                caloriesBurned = weight * distance * 0.7; // Пример для обычной ходьбы
+                caloriesBurned = weight * distance * 0.7; // Расчет для обычной ходьбы
             }
 
         } else { // Если выбрано плавание
@@ -117,7 +126,7 @@ public class CalorieBurningActivity extends BaseActivity {
             }
 
             if (!isValid) {
-                Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();//Вывод предупреждения
                 return;
             }
 
@@ -125,13 +134,13 @@ public class CalorieBurningActivity extends BaseActivity {
             try {
                 time = Double.parseDouble(timeStr);
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Пожалуйста, используйте корректные значения", Toast.LENGTH_SHORT).show();//Вывод предупреждения
                 return;
             }
 
             int checkedSwimmingStyleId = radioGroupSwimmingStyle.getCheckedRadioButtonId();
             double met;
-
+            //Различные множители met зависящие от выбранной интенсивности плавания
             if (checkedSwimmingStyleId == R.id.radioSwimmingSlow) {
                 met = 4.2; // Медленное плавание
             } else if (checkedSwimmingStyleId == R.id.radioSwimmingFast) {
@@ -140,7 +149,7 @@ public class CalorieBurningActivity extends BaseActivity {
                 met = 6.5; // Обычное плавание
             }
 
-            // Формула для расчета калорий
+            // Формула для расчета сожженных калорий при плавании
             caloriesBurned = met * weight * time;
         }
 

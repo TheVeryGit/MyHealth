@@ -89,7 +89,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Нормально, но может быть сонливость:"
+        android:text="Нормально:"
         android:layout_marginTop="16dp"
         android:textColor="#FFA500"
         android:textStyle="bold" />

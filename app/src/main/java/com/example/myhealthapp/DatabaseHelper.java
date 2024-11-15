@@ -6,36 +6,41 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "nutrition.db";
+    private static final String DATABASE_NAME = "nutrition.db"; // Название базы данных
     private static final int DATABASE_VERSION = 1;
 
+    // Названия таблицы и колонок для хранения информации о приёмах пищи
     public static final String TABLE_MEALS = "meals";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_DATE = "date";
-    public static final String COLUMN_BREAKFAST = "breakfast";
-    public static final String COLUMN_LUNCH = "lunch";
-    public static final String COLUMN_DINNER = "dinner";
+    public static final String COLUMN_ID = "_id"; // Уникальный ID записи
+    public static final String COLUMN_DATE = "date"; // Дата записи
+    public static final String COLUMN_BREAKFAST = "breakfast"; // Завтрак
+    public static final String COLUMN_LUNCH = "lunch"; // Обед
+    public static final String COLUMN_DINNER = "dinner"; // Ужин
 
+    // SQL-запрос для создания таблицы meals
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_MEALS + " (" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_DATE + " TEXT NOT NULL, " +
-                    COLUMN_BREAKFAST + " TEXT, " +
-                    COLUMN_LUNCH + " TEXT, " +
-                    COLUMN_DINNER + " TEXT);";
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + // ID будет автоматически увеличиваться
+                    COLUMN_DATE + " TEXT NOT NULL, " + // Дата обязательна для каждой записи
+                    COLUMN_BREAKFAST + " TEXT, " + // Поле для завтрака
+                    COLUMN_LUNCH + " TEXT, " + // Поле для обеда
+                    COLUMN_DINNER + " TEXT);"; // Поле для ужина
 
+    // Конструктор для создания экземпляра DatabaseHelper
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        // Метод вызывается при первом создании базы данных
+        db.execSQL(TABLE_CREATE); // Создаём таблицу meals
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEALS);
-        onCreate(db);
+        // Метод вызывается при обновлении версии базы данных
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEALS); // Удаляем старую таблицу, если она существует
+        onCreate(db); // Создаём новую версию таблицы
     }
 }

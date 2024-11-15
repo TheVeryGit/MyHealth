@@ -11,19 +11,19 @@ import android.widget.SimpleCursorAdapter;
 
 public class ReminderListActivity extends BaseActivity {
 
-    private ListView listView;
-    private ReminderDatabaseHelper dbHelper;
+    private ListView listView;  // Список напоминаний
+    private ReminderDatabaseHelper dbHelper;  // Помощник для работы с базой данных
     private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reminder_list);
+        setContentView(R.layout.activity_reminder_list);  // Устанавливаем layout для экрана
 
         listView = findViewById(R.id.listView);
-        dbHelper = new ReminderDatabaseHelper(this);
+        dbHelper = new ReminderDatabaseHelper(this);  // Инициализация помощника для работы с базой
 
-        initToolbar();
+        initToolbar();  // Инициализация тулбара и установка названия
         setToolbarTitle("Напоминания");
 
         Button addButton = findViewById(R.id.addButton);
@@ -32,13 +32,14 @@ public class ReminderListActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        loadReminders();
+        loadReminders();  // Загружаем все напоминания из базы данных
     }
 
+    // Метод для загрузки напоминаний из базы данных
     private void loadReminders() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();  // Открываем базу данных для чтения
         Cursor cursor = db.query(ReminderDatabaseHelper.TABLE_REMINDERS,
-                null, null, null, null, null, ReminderDatabaseHelper.COLUMN_DATE + " DESC");
+                null, null, null, null, null, ReminderDatabaseHelper.COLUMN_DATE + " DESC");  // Сортируем по дате
 
         adapter = new SimpleCursorAdapter(this,
                 R.layout.reminder_list_item,
@@ -47,10 +48,10 @@ public class ReminderListActivity extends BaseActivity {
                 new int[]{R.id.dateTextView, R.id.timeTextView},
                 0);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);  // Устанавливаем адаптер для списка
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(ReminderListActivity.this, ReminderDetailActivity.class);
-            intent.putExtra("reminder_id", id);
+            intent.putExtra("reminder_id", id);  // Передаём ID выбранного напоминания
             startActivity(intent);
         });
     }
@@ -61,4 +62,3 @@ public class ReminderListActivity extends BaseActivity {
         loadReminders();
     }
 }
-

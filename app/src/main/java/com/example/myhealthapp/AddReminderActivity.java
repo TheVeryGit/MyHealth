@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,7 +25,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
     private EditText dateEditText; // Поле для ввода даты
     private EditText timeEditText; // Поле для ввода времени
-    private EditText messageEditText; // Поле для ввода сообщения напоминания
+    private EditText messageEditText; //Поле для ввода сообщения напоминания
     private ReminderDatabaseHelper dbHelper; // Помощник для работы с базой данных напоминаний
 
     @Override
@@ -34,7 +33,7 @@ public class AddReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder); // Устанавливаем layout активности
 
-        dbHelper = new ReminderDatabaseHelper(this); // Инициализация базы данных напоминаний
+        dbHelper = new ReminderDatabaseHelper(this); // Инициализация базы данных
 
         // Инициализация полей ввода
         dateEditText = findViewById(R.id.dateEditText);
@@ -49,7 +48,7 @@ public class AddReminderActivity extends AppCompatActivity {
         Button closeButton = findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> finish());
 
-        // Проверка разрешения на установку точных будильников (для API >= S)
+        // Проверка разрешения на установку точных будильников
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
@@ -61,12 +60,12 @@ public class AddReminderActivity extends AppCompatActivity {
 
     // Метод для добавления нового напоминания
     private void addReminder() {
-        // Проверка разрешения на отправку уведомлений для API 33 и выше
+        // Проверка разрешения на отправку уведомлений для API 33(Android 13) и выше
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 // Запросить разрешение на отправку уведомлений
                 requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
-                return; // Останавливаем метод, ждем ответ пользователя
+                return;
             }
         }
 
